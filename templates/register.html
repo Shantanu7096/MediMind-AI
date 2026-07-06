@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="auth-card">
+
+<h2>Create Account</h2>
+
+<form method="POST">
+
+<input
+name="fullname"
+placeholder="Full Name"
+required>
+
+<input
+type="email"
+name="email"
+placeholder="Email"
+required>
+
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+
+<input
+type="password"
+name="confirm"
+placeholder="Confirm Password"
+required>
+
+<input
+type="number"
+name="age"
+placeholder="Age">
+
+<select name="gender">
+
+<option>Male</option>
+
+<option>Female</option>
+
+<option>Other</option>
+
+</select>
+
+<input
+name="blood"
+placeholder="Blood Group">
+
+<input
+name="phone"
+placeholder="Phone Number">
+
+<input
+name="emergency"
+placeholder="Emergency Contact">
+
+<button>
+
+Create Account
+
+</button>
+
+</form>
+
+<p>
+
+Already have account?
+
+<a href="/login">
+
+Login
+
+</a>
+
+</p>
+
+</div>
+
+{% endblock %}

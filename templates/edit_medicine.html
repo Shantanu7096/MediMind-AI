@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Medicine | MediMind AI{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4>
+
+                <i class="fa-solid fa-pen-to-square"></i>
+
+                Edit Medicine
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST"
+                action="{{ url_for('medicine.update_medicine', id=medicine.id) }}">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Medicine Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="medicine_name"
+                            value="{{ medicine.medicine_name }}"
+                            required>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Dosage
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="dosage"
+                            value="{{ medicine.dosage }}"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Medicine Type
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="medicine_type">
+
+                            <option {% if medicine.medicine_type=="Tablet" %}selected{% endif %}>Tablet</option>
+
+                            <option {% if medicine.medicine_type=="Capsule" %}selected{% endif %}>Capsule</option>
+
+                            <option {% if medicine.medicine_type=="Syrup" %}selected{% endif %}>Syrup</option>
+
+                            <option {% if medicine.medicine_type=="Injection" %}selected{% endif %}>Injection</option>
+
+                            <option {% if medicine.medicine_type=="Drops" %}selected{% endif %}>Drops</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Frequency
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="frequency"
+                            value="{{ medicine.frequency }}">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Food Instruction
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="food_instruction">
+
+                            <option {% if medicine.food_instruction=="Before Food" %}selected{% endif %}>Before Food</option>
+
+                            <option {% if medicine.food_instruction=="After Food" %}selected{% endif %}>After Food</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Notes
+
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        rows="4"
+                        name="notes">{{ medicine.notes }}</textarea>
+
+                </div>
+
+                <button class="btn btn-success">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Update Medicine
+
+                </button>
+
+                <a href="{{ url_for('medicine.medicines') }}"
+                class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

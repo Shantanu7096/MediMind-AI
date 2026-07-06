@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Water Tracker
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h2>
+
+💧 Water Tracker
+
+</h2>
+
+<hr>
+
+<h1>
+
+{{ log.glasses }}
+
+/
+
+{{ log.goal }}
+
+Glasses
+
+</h1>
+
+<div class="progress mt-4">
+
+<div class="progress-bar bg-info"
+
+style="width: {{ (log.glasses/log.goal)*100 }}%">
+
+</div>
+
+</div>
+
+<a href="/add_water"
+
+class="btn btn-primary mt-4">
+
++ Add One Glass
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

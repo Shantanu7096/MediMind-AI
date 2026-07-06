@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}Medicines | MediMind AI{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>
+            <i class="fa-solid fa-pills text-primary"></i>
+            Medicine Management
+        </h2>
+
+    </div>
+
+    <!-- Add Medicine Card -->
+
+    <div class="card shadow mb-5">
+
+        <div class="card-header bg-primary text-white">
+
+            <h5 class="mb-0">
+
+                Add New Medicine
+
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="{{ url_for('medicine.add_medicine') }}"
+                  method="POST">
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Medicine Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="medicine_name"
+                            required>
+
+                    </div>
+
+                    <div class="col-md-2 mb-3">
+
+                        <label class="form-label">
+
+                            Dosage
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="dosage"
+                            placeholder="500 mg"
+                            required>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Medicine Type
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="medicine_type">
+
+                            <option>Tablet</option>
+
+                            <option>Capsule</option>
+
+                            <option>Syrup</option>
+
+                            <option>Injection</option>
+
+                            <option>Drops</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Frequency
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="frequency">
+
+                            <option>Once Daily</option>
+
+                            <option>Twice Daily</option>
+
+                            <option>Three Times Daily</option>
+
+                            <option>Weekly</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Before / After Food
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="food_instruction">
+
+                            <option>Before Food</option>
+
+                            <option>After Food</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Reminder Time
+
+                        </label>
+
+                        <input
+                            type="time"
+                            class="form-control"
+                            name="reminder_time">
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Start Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="start_date">
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            End Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="end_date">
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Notes
+
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        rows="3"
+                        name="notes"></textarea>
+
+                </div>
+
+                <button
+                    class="btn btn-success">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Medicine
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Medicine Table -->
+
+    <div class="card shadow">
+
+        <div class="card-header bg-dark text-white">
+
+            <h5 class="mb-0">
+
+                My Medicines
+
+            </h5>
+
+        </div>
+
+        <div class="card-body table-responsive">
+
+            <table class="table table-bordered table-hover align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Dosage</th>
+
+                        <th>Type</th>
+
+                        <th>Frequency</th>
+
+                        <th>Reminder</th>
+
+                        <th>Status</th>
+
+                        <th width="220">
+
+                            Actions
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% if medicines %}
+
+                    {% for medicine in medicines %}
+
+                    <tr>
+
+                        <td>{{ medicine.medicine_name }}</td>
+
+                        <td>{{ medicine.dosage }}</td>
+
+                        <td>{{ medicine.medicine_type }}</td>
+
+                        <td>{{ medicine.frequency }}</td>
+
+                        <td>{{ medicine.reminder_time }}</td>
+
+                        <td>
+
+                            <a href="{{ url_for('medicine.edit_medicine', id=medicine.id) }}"
+                            class="btn btn-primary btn-sm">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            </a>
+
+                            <a href="{{ url_for('medicine.mark_taken', id=medicine.id) }}"
+                            class="btn btn-success btn-sm">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            </a>
+
+                            <a href="{{ url_for('medicine.mark_missed', id=medicine.id) }}"
+                            class="btn btn-warning btn-sm">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            </a>
+
+                            <a href="{{ url_for('medicine.delete_medicine', id=medicine.id) }}"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Delete this medicine?')">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            </a>
+
+</td>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="7"
+                            class="text-center">
+
+                            No medicines added yet.
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

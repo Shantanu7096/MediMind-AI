@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Sleep Tracker{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<div class="card shadow">
+
+<div class="card-header bg-dark text-white">
+
+<h3>
+
+😴 Sleep Tracker
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<form method="POST"
+      action="/save_sleep">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label>
+
+Sleep Time
+
+</label>
+
+<input
+type="time"
+name="sleep_time"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-6">
+
+<label>
+
+Wake Time
+
+</label>
+
+<input
+type="time"
+name="wake_time"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<button class="btn btn-success mt-4">
+
+Save Sleep
+
+</button>
+
+</form>
+
+<hr>
+
+{% if log %}
+
+<h4>
+
+Today's Sleep
+
+</h4>
+
+<p>
+
+<b>Total Hours :</b>
+
+{{ log.total_hours }}
+
+</p>
+
+<p>
+
+<b>Quality :</b>
+
+{{ log.sleep_quality }}
+
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -466,13 +466,45 @@ Analytics
 Add screenshots here
 
 - Login Page
+  <img width="1892" height="972" alt="image" src="https://github.com/user-attachments/assets/6e5559f1-64fe-40fb-9409-48924d792b2d" />
+
+  <img width="1862" height="846" alt="image" src="https://github.com/user-attachments/assets/42bcc1df-481b-46a5-be09-6ac8e4703b1f" />
+
+  <img width="1707" height="870" alt="image" src="https://github.com/user-attachments/assets/f7a28bb4-f115-4d55-9714-d138bd1109ee" />
+
+  
 - Dashboard
+  <img width="1896" height="973" alt="image" src="https://github.com/user-attachments/assets/6bf21c36-e224-47a0-b889-05db60a60df9" />
+
+  <img width="1895" height="966" alt="image" src="https://github.com/user-attachments/assets/bc470f8e-8927-4aa9-be7f-a1f6f2b689ed" />
+
 - Medicines
+  <img width="1906" height="807" alt="image" src="https://github.com/user-attachments/assets/63f59f6c-c726-413f-b2a9-fdff71422690" />
+
+  <img width="1897" height="727" alt="image" src="https://github.com/user-attachments/assets/0bc48287-7ffb-4cd5-819e-2bb6fc06566e" />
+
 - AI Assistant
+  <img width="1896" height="862" alt="image" src="https://github.com/user-attachments/assets/50694e0c-b0ed-4169-a075-c92272ffba04" />
+
 - OCR Scanner
+  <img width="1896" height="942" alt="image" src="https://github.com/user-attachments/assets/af5c0c90-fbc5-439f-8bac-0d0aa12a6a6d" />
+
+  <img width="1407" height="921" alt="image" src="https://github.com/user-attachments/assets/b64fd75f-a37b-4ab4-97c1-53e02a0dd809" />
+
 - Analytics
+  <img width="1907" height="931" alt="image" src="https://github.com/user-attachments/assets/7e16497e-c785-4f34-9188-2e1b9ad7c03c" />
+
+  <img width="1877" height="802" alt="image" src="https://github.com/user-attachments/assets/1c33d8b8-d739-4560-9cbb-fa8595878c4a" />
+
 - Profile
+  <img width="1272" height="970" alt="image" src="https://github.com/user-attachments/assets/f6fbdaea-46c2-49bc-ab8a-e2fd3eb3cda9" />
+
 - Settings
+  <img width="1910" height="868" alt="image" src="https://github.com/user-attachments/assets/abe63f54-4bde-4f39-b581-10e93ea99de7" />
+
+  <img width="1897" height="967" alt="image" src="https://github.com/user-attachments/assets/7bdfbbf5-5e91-4b0c-9810-a749a0cd65ec" />
+
+
 
 ---
 

@@ -1,9 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from datetime import datetime
+from models import medicine
+from models.notification import Notification
 from models.reminder import Reminder
 from models import db
 from models.medicine import Medicine
+from routes import notification
 
 medicine_bp = Blueprint("medicine", __name__)
 
@@ -23,6 +26,7 @@ def medicines():
         "medicines.html",
         medicines=medicine_list
     )
+
 
 @medicine_bp.route("/search_medicine")
 @login_required
@@ -108,6 +112,7 @@ def add_medicine():
         # Save medicine
         db.session.add(medicine)
         db.session.commit()
+        
 
         # Create reminder automatically
         reminder = Reminder(
@@ -246,6 +251,20 @@ def mark_taken(id):
         medicine.status = "Taken"
 
         db.session.commit()
+        notification = Notification(
+
+    user_id=current_user.id,
+
+    title="Medicine Taken",
+
+    message=f"{medicine.medicine_name} marked as Taken.",
+
+    notification_type="Medicine"
+
+)
+
+        db.session.add(notification)
+        db.session.commit()
 
         flash(
             "Medicine marked as Taken.",
@@ -278,6 +297,20 @@ def mark_missed(id):
 
         medicine.status = "Missed"
 
+        db.session.commit()
+        notification = Notification(
+
+            user_id=current_user.id,
+
+            title="Medicine Missed",
+
+            message=f"You missed {medicine.medicine_name}.",
+
+            notification_type="Medicine"
+
+        )
+
+        db.session.add(notification)
         db.session.commit()
 
         flash(

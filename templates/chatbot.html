@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}AI Assistant{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="chat-container shadow">
+
+        <div class="chat-header">
+
+            <i class="fa-solid fa-robot"></i>
+
+            MediMind AI Assistant
+
+        </div>
+
+        <div
+            id="chatMessages"
+            class="chat-body">
+
+            <div class="chat-message chat-ai">
+
+                <div class="chat-bubble">
+
+                    👋 Hello <strong>{{ current_user.fullname }}</strong>!<br><br>
+
+                    I'm <strong>MediMind AI</strong>.
+
+                    Ask me about:
+
+                    <ul class="mt-2 mb-0">
+
+                        <li>💊 Medicines</li>
+
+                        <li>🩺 Health Tips</li>
+
+                        <li>💧 Water Intake</li>
+
+                        <li>😴 Sleep</li>
+
+                        <li>⚖️ BMI</li>
+
+                        <li>🍎 Nutrition</li>
+
+                        <li>🏃 Fitness</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <form id="chatForm">
+
+                <textarea
+
+                    id="message"
+
+                    class="form-control"
+
+                    rows="2"
+
+                    placeholder="Type your question here..."
+
+                    required></textarea>
+
+                <button
+
+                    id="sendBtn"
+
+                    type="submit"
+
+                    class="btn btn-primary chat-send">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+
+{% endblock %}

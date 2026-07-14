@@ -15,6 +15,15 @@ from routes.medicine import medicine_bp
 from routes.reminder import reminder_bp
 from routes.water import water_bp
 from routes.sleep import sleep_bp
+from routes.bmi import bmi_bp
+from routes.chatbot import chatbot_bp
+from routes.scanner import scanner_bp
+from routes.analytics import analytics_bp
+from routes.notification import notification_bp
+from routes.medicine_ai import medicine_ai_bp
+from routes.profile import profile_bp
+from routes.settings import settings_bp
+from routes.report import report_bp
 
 app = Flask(__name__)
 
@@ -48,6 +57,24 @@ app.register_blueprint(reminder_bp)
 app.register_blueprint(water_bp)
 
 app.register_blueprint(sleep_bp)
+
+app.register_blueprint(bmi_bp)
+
+app.register_blueprint(chatbot_bp)
+
+app.register_blueprint(scanner_bp)
+
+app.register_blueprint(analytics_bp)
+
+app.register_blueprint(notification_bp)
+
+app.register_blueprint(medicine_ai_bp)
+
+app.register_blueprint(profile_bp)
+
+app.register_blueprint(settings_bp)
+
+app.register_blueprint(report_bp)
 
 with app.app_context():
 

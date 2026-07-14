@@ -1,82 +1,356 @@
 {% extends "base.html" %}
 
+{% block title %}
+
+Register
+
+{% endblock %}
+
 {% block content %}
 
-<div class="auth-card">
+<div class="container-fluid py-5">
 
-<h2>Create Account</h2>
+    <div class="row justify-content-center align-items-center">
 
-<form method="POST">
+        <!-- ===================================== -->
+        <!-- Registration Form -->
+        <!-- ===================================== -->
 
-<input
-name="fullname"
-placeholder="Full Name"
-required>
+        <div class="col-lg-7 col-md-10">
 
-<input
-type="email"
-name="email"
-placeholder="Email"
-required>
+            <div class="card app-card shadow-lg border-0">
 
-<input
-type="password"
-name="password"
-placeholder="Password"
-required>
+                <div class="card-header app-header success">
 
-<input
-type="password"
-name="confirm"
-placeholder="Confirm Password"
-required>
+                    <h3 class="mb-0">
 
-<input
-type="number"
-name="age"
-placeholder="Age">
+                        <i class="fa-solid fa-user-plus me-2"></i>
 
-<select name="gender">
+                        Create Your Account
 
-<option>Male</option>
+                    </h3>
 
-<option>Female</option>
+                </div>
 
-<option>Other</option>
+                <div class="card-body p-4">
 
-</select>
+                    <form method="POST">
 
-<input
-name="blood"
-placeholder="Blood Group">
+                        <div class="row">
 
-<input
-name="phone"
-placeholder="Phone Number">
+                            <!-- Full Name -->
 
-<input
-name="emergency"
-placeholder="Emergency Contact">
+                            <div class="col-md-6 mb-4">
 
-<button>
+                                <label class="form-label">
 
-Create Account
+                                    Full Name
 
-</button>
+                                </label>
 
-</form>
+                                <div class="input-group">
 
-<p>
+                                    <span class="input-group-text">
 
-Already have account?
+                                        <i class="fa-solid fa-user"></i>
 
-<a href="/login">
+                                    </span>
 
-Login
+                                    <input
 
-</a>
+                                        type="text"
 
-</p>
+                                        name="fullname"
+
+                                        class="form-control"
+
+                                        placeholder="Enter Full Name"
+
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Email -->
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+
+                                    Email Address
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa-solid fa-envelope"></i>
+
+                                    </span>
+
+                                    <input
+
+                                        type="email"
+
+                                        name="email"
+
+                                        class="form-control"
+
+                                        placeholder="Enter Email"
+
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Password -->
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+
+                                    Password
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa-solid fa-lock"></i>
+
+                                    </span>
+
+                                    <input
+
+                                        type="password"
+
+                                        name="password"
+
+                                        class="form-control"
+
+                                        placeholder="Create Password"
+
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Confirm Password -->
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+
+                                    Confirm Password
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa-solid fa-lock"></i>
+
+                                    </span>
+
+                                    <input
+
+                                        type="password"
+
+                                        name="confirm"
+
+                                        class="form-control"
+
+                                        placeholder="Confirm Password"
+
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Age -->
+
+                            <div class="col-md-4 mb-4">
+
+                                <label class="form-label">
+
+                                    Age
+
+                                </label>
+
+                                <input
+
+                                    type="number"
+
+                                    name="age"
+
+                                    class="form-control"
+
+                                    placeholder="Age">
+
+                            </div>
+
+                            <!-- Gender -->
+
+                            <div class="col-md-4 mb-4">
+
+                                <label class="form-label">
+
+                                    Gender
+
+                                </label>
+
+                                <select
+
+                                    name="gender"
+
+                                    class="form-select">
+
+                                    <option value="">Select</option>
+
+                                    <option>Male</option>
+
+                                    <option>Female</option>
+
+                                    <option>Other</option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- Blood Group -->
+
+                            <div class="col-md-4 mb-4">
+
+                                <label class="form-label">
+
+                                    Blood Group
+
+                                </label>
+
+                                <input
+
+                                    type="text"
+
+                                    name="blood"
+
+                                    class="form-control"
+
+                                    placeholder="A+, O+, etc.">
+
+                            </div>
+
+                            <!-- Phone -->
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+
+                                    Phone Number
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa-solid fa-phone"></i>
+
+                                    </span>
+
+                                    <input
+
+                                        type="text"
+
+                                        name="phone"
+
+                                        class="form-control"
+
+                                        placeholder="Phone Number">
+
+                                </div>
+
+                            </div>
+
+                            <!-- Emergency Contact -->
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+
+                                    Emergency Contact
+
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fa-solid fa-user-shield"></i>
+
+                                    </span>
+
+                                    <input
+
+                                        type="text"
+
+                                        name="emergency"
+
+                                        class="form-control"
+
+                                        placeholder="Emergency Contact">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button
+
+                            type="submit"
+
+                            class="btn app-btn success w-100">
+
+                            <i class="fa-solid fa-user-plus me-2"></i>
+
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+
+                        Already have an account?
+
+                        <a
+
+                            href="/login"
+
+                            class="fw-bold text-decoration-none">
+
+                            Login Here
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

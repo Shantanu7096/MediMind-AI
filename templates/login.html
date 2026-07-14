@@ -1,44 +1,255 @@
 {% extends "base.html" %}
 
-{% block content %}
-
-<div class="auth-card">
-
-<h2>Welcome Back</h2>
-
-<form method="POST">
-
-<input
-type="email"
-name="email"
-placeholder="Email"
-required>
-
-<input
-type="password"
-name="password"
-placeholder="Password"
-required>
-
-<button>
+{% block title %}
 
 Login
 
-</button>
+{% endblock %}
 
-</form>
+{% block content %}
 
-<p>
+<div class="container-fluid py-5">
 
-Don't have an account?
+    <div class="row justify-content-center align-items-center">
 
-<a href="/register">
+        <!-- ===================================== -->
+        <!-- Left Side -->
+        <!-- ===================================== -->
 
-Register
+        <div class="col-lg-5 d-none d-lg-block">
 
-</a>
+            <div class="card app-card border-0 shadow-lg">
 
-</p>
+                <div class="card-body text-center p-5">
+
+                    <i class="fa-solid fa-heart-pulse fa-5x health-text mb-4"></i>
+
+                    <h1 class="fw-bold">
+
+                        Welcome Back!
+
+                    </h1>
+
+                    <p class="text-muted mt-3">
+
+                        Sign in to continue managing your medicines,
+                        monitor your health,
+                        receive AI-powered insights,
+                        and never miss an important reminder.
+
+                    </p>
+
+                    <hr>
+
+                    <div class="row text-center mt-4">
+
+                        <div class="col-4">
+
+                            <i class="fa-solid fa-pills fa-2x medicine-text"></i>
+
+                            <p class="mt-2">
+
+                                Medicines
+
+                            </p>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <i class="fa-solid fa-robot fa-2x text-primary"></i>
+
+                            <p class="mt-2">
+
+                                AI Assistant
+
+                            </p>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <i class="fa-solid fa-chart-line fa-2x text-success"></i>
+
+                            <p class="mt-2">
+
+                                Analytics
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================== -->
+        <!-- Login Form -->
+        <!-- ===================================== -->
+
+        <div class="col-lg-5 col-md-8">
+
+            <div class="card app-card shadow-lg border-0">
+
+                <div class="card-header app-header primary">
+
+                    <h3 class="mb-0">
+
+                        <i class="fa-solid fa-user-lock me-2"></i>
+
+                        Login
+
+                    </h3>
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form method="POST">
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Email Address
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+                                </span>
+
+                                <input
+
+                                    type="email"
+
+                                    name="email"
+
+                                    class="form-control"
+
+                                    placeholder="Enter Email"
+
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Password
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+
+                                    <i class="fa-solid fa-lock"></i>
+
+                                </span>
+
+                                <input
+
+                                    type="password"
+
+                                    name="password"
+
+                                    class="form-control"
+
+                                    placeholder="Enter Password"
+
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-4">
+
+                            <div class="form-check">
+
+                                <input
+
+                                    class="form-check-input"
+
+                                    type="checkbox"
+
+                                    id="remember">
+
+                                <label
+
+                                    class="form-check-label"
+
+                                    for="remember">
+
+                                    Remember Me
+
+                                </label>
+
+                            </div>
+
+                            <a
+
+                                href="/forgot_password"
+
+                                class="text-decoration-none">
+
+                                Forgot Password?
+
+                            </a>
+
+                        </div>
+
+                        <button
+
+                            type="submit"
+
+                            class="btn app-btn primary w-100">
+
+                            <i class="fa-solid fa-right-to-bracket me-2"></i>
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+
+                        Don't have an account?
+
+                        <a
+
+                            href="/register"
+
+                            class="fw-bold text-decoration-none">
+
+                            Register Here
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

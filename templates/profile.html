@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>
+
+                <i class="fa-solid fa-user"></i>
+
+                My Profile
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST"
+                  action="{{ url_for('profile.update_profile') }}">
+
+                <div class="row">
+
+                    <div class="col-md-3 text-center">
+
+                        <img src="{{ url_for('static', filename='images/' + user.profile_image) }}"
+                             class="img-thumbnail rounded-circle mb-3"
+                             width="180"
+                             height="180">
+
+                        <h5>{{ user.fullname }}</h5>
+
+                        <p class="text-muted">
+
+                            {{ user.email }}
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Full Name
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="fullname"
+                                    class="form-control"
+                                    value="{{ user.fullname }}"
+                                    required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Email
+
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    value="{{ user.email }}"
+                                    required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Phone
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    class="form-control"
+                                    value="{{ user.phone or '' }}">
+
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+
+                                <label class="form-label">
+
+                                    Age
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    name="age"
+                                    class="form-control"
+                                    value="{{ user.age or '' }}">
+
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+
+                                <label class="form-label">
+
+                                    Gender
+
+                                </label>
+
+                                <select
+                                    name="gender"
+                                    class="form-select">
+
+                                    <option value="">Select</option>
+
+                                    <option value="Male"
+                                    {% if user.gender=="Male" %}selected{% endif %}>
+
+                                    Male
+
+                                    </option>
+
+                                    <option value="Female"
+                                    {% if user.gender=="Female" %}selected{% endif %}>
+
+                                    Female
+
+                                    </option>
+
+                                    <option value="Other"
+                                    {% if user.gender=="Other" %}selected{% endif %}>
+
+                                    Other
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Blood Group
+
+                                </label>
+
+                                <select
+                                    name="blood_group"
+                                    class="form-select">
+
+                                    <option value="">Select</option>
+
+                                    {% for bg in ["A+","A-","B+","B-","AB+","AB-","O+","O-"] %}
+
+                                    <option value="{{ bg }}"
+                                    {% if user.blood_group==bg %}selected{% endif %}>
+
+                                        {{ bg }}
+
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Height (cm)
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    name="height"
+                                    class="form-control"
+                                    value="{{ user.height or '' }}">
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Weight (kg)
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    name="weight"
+                                    class="form-control"
+                                    value="{{ user.weight or '' }}">
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Allergies
+
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    rows="3"
+                                    name="allergies">{{ user.allergies or '' }}</textarea>
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Chronic Diseases
+
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    rows="3"
+                                    name="chronic_diseases">{{ user.chronic_diseases or '' }}</textarea>
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Emergency Contact
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="emergency_contact"
+                                    class="form-control"
+                                    value="{{ user.emergency_contact or '' }}">
+
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <button
+                            class="btn btn-success">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Changes
+
+                        </button>
+
+                        <a href="{{ url_for('dashboard.dashboard') }}"
+                           class="btn btn-secondary">
+
+                            Cancel
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -72,22 +72,21 @@ def save_sleep():
         log.sleep_quality = quality
 
     else:
-
         log = SleepLog(
 
-            user_id=current_user.id,
+    user_id=current_user.id,
 
-            sleep_time=sleep_time.time(),
+    sleep_time=sleep_time.time(),
 
-            wake_time=wake_time.time(),
+    wake_time=wake_time.time(),
 
-            total_hours=hours,
+    total_hours=hours,
 
-            sleep_quality=quality,
+    sleep_quality=quality,
 
-            log_date=today
+    log_date=today
 
-        )
+)
 
         db.session.add(log)
 

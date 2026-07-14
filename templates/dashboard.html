@@ -1,368 +1,315 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard | MediMind AI{% endblock %}
+{% block title %}
+
+Dashboard
+
+{% endblock %}
 
 {% block content %}
 
-<div class="dashboard">
+<div class="container-fluid py-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+<!-- ========================= -->
 
-        <div>
+<!-- Welcome Card -->
 
-            <h2 class="dashboard-title">
+<!-- ========================= -->
 
-                Welcome,
-                {{ user.fullname }} 👋
+<div class="card shadow-lg border-0 rounded-4 mb-4">
 
-            </h2>
+<div class="card-body">
 
-            <p class="text-muted">
+<div class="row align-items-center">
 
-                Here's your health summary for today.
+<div class="col-lg-8">
 
-            </p>
+<h2 class="fw-bold">
 
-        </div>
+👋 Welcome,
 
-        <div>
+{{ user.fullname }}
 
-            <a href="/medicines" class="btn btn-primary">
+</h2>
 
-                <i class="fa-solid fa-plus"></i>
+<p class="text-muted mb-0">
 
-                Manage Medicines
+Stay healthy and never miss your medicines.
 
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- Dashboard Cards -->
-
-    <div class="dashboard-grid">
-
-        <div class="card-box">
-
-            <div class="card-icon bg-blue">
-
-                <i class="fa-solid fa-heart-pulse"></i>
-
-            </div>
-
-            <h5>Health Score</h5>
-
-            <h2>{{ health_score }}%</h2>
-
-            <small class="text-success">
-
-                Based on medicine adherence
-
-            </small>
-
-        </div>
-
-        <div class="card-box">
-
-            <div class="card-icon bg-green">
-
-                <i class="fa-solid fa-pills"></i>
-
-            </div>
-
-            <h5>Total Medicines</h5>
-
-            <h2>{{ medicine_count }}</h2>
-
-            <small>
-
-                Added by you
-
-            </small>
-
-        </div>
-
-        <div class="card-box">
-
-            <div class="card-icon bg-orange">
-
-                <i class="fa-solid fa-circle-check"></i>
-
-            </div>
-
-            <h5>Taken</h5>
-
-            <h2>{{ taken_count }}</h2>
-
-            <small>
-
-                Completed
-
-            </small>
-
-        </div>
-
-        <div class="card-box">
-
-            <div class="card-icon bg-red">
-
-                <i class="fa-solid fa-circle-xmark"></i>
-
-            </div>
-
-            <h5>Missed</h5>
-
-            <h2>{{ missed_count }}</h2>
-
-            <small>
-
-                Need Attention
-
-            </small>
-
-        </div>
-
-    </div>
-
-    <!-- Medicines -->
-
-    <div class="row mt-4">
-
-        <div class="col-lg-8">
-
-            <div class="table-card">
-
-                <h4 class="mb-4">
-
-                    <i class="fa-solid fa-pills"></i>
-
-                    My Medicines
-
-                </h4>
-
-                <table class="table table-hover">
-
-                    <thead>
-
-                    <tr>
-
-                        <th>Name</th>
-
-                        <th>Dosage</th>
-
-                        <th>Time</th>
-
-                        <th>Status</th>
-
-                    </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                    {% if medicines %}
-
-                        {% for medicine in medicines %}
-
-                        <tr>
-
-                            <td>
-
-                                {{ medicine.medicine_name }}
-
-                            </td>
-
-                            <td>
-
-                                {{ medicine.dosage }}
-
-                            </td>
-
-                            <td>
-
-                                {% if medicine.reminder_time %}
-
-                                    {{ medicine.reminder_time.strftime("%I:%M %p") }}
-
-                                {% else %}
-
-                                    --
-
-                                {% endif %}
-
-                            </td>
-
-                            <td>
-
-                                {% if medicine.status=="Taken" %}
-
-                                    <span class="badge bg-success">
-
-                                        Taken
-
-                                    </span>
-
-                                {% elif medicine.status=="Missed" %}
-
-                                    <span class="badge bg-danger">
-
-                                        Missed
-
-                                    </span>
-
-                                {% else %}
-
-                                    <span class="badge bg-warning text-dark">
-
-                                        Pending
-
-                                    </span>
-
-                                {% endif %}
-
-                            </td>
-
-                        </tr>
-
-                        {% endfor %}
-
-                    {% else %}
-
-                        <tr>
-
-                            <td colspan="4" class="text-center">
-
-                                No medicines added yet.
-
-                            </td>
-
-                        </tr>
-
-                    {% endif %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-        <!-- AI Card -->
-
-        <div class="col-lg-4">
-
-            <div class="ai-card">
-
-                <h3>
-                    
-                    <div class="activity-card mt-4">
-
-    <h4>
-
-        <i class="fa-solid fa-bell"></i>
-
-        Today's Reminders
-
-    </h4>
-
-    <hr>
-
-    {% if today_reminders %}
-
-        {% for reminder in today_reminders %}
-
-        <div class="activity-item">
-
-            <div class="activity-icon">
-
-                <i class="fa-solid fa-pills"></i>
-
-            </div>
-
-            <div>
-
-                <strong>
-
-                    {{ reminder.medicine.medicine_name }}
-
-                </strong>
-
-                <br>
-
-                <small>
-
-                    {{ reminder.reminder_time.strftime("%I:%M %p") }}
-
-                </small>
-
-            </div>
-
-        </div>
-
-        {% endfor %}
-
-    {% else %}
-
-        <p>No reminders for today.</p>
-
-    {% endif %}
+</p>
 
 </div>
-                    🤖 AI Health Tips
 
-                </h3>
+<div class="col-lg-4 text-end">
 
-                {% if medicine_count == 0 %}
+<a href="/download_report"
 
-                    <p>
+class="btn btn-danger">
 
-                        Start by adding your medicines.
+<i class="fa-solid fa-file-pdf"></i>
 
-                    </p>
+Download Report
 
-                {% elif missed_count > 0 %}
+</a>
 
-                    <p>
+</div>
 
-                        You have missed medicines today.
-                        Try to improve your adherence.
+</div>
 
-                    </p>
+</div>
 
-                {% elif taken_count == medicine_count %}
+</div>
 
-                    <p>
+<!-- ========================= -->
 
-                        Excellent!
-                        You have taken all medicines today.
+<!-- Statistics -->
 
-                    </p>
+<!-- ========================= -->
+
+<div class="row g-4">
+
+<!-- Health -->
+
+<div class="col-lg-3">
+
+<div class="card shadow border-0 rounded-4">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-heart-pulse
+
+text-danger fa-3x mb-3">
+
+</i>
+
+<h6>
+
+Health Score
+
+</h6>
+
+<h2 class="text-danger">
+
+{{ health_score }}%
+
+</h2>
+
+<div class="progress">
+
+<div
+
+class="progress-bar bg-danger"
+
+style="width:{{ health_score }}%">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Medicine -->
+
+<div class="col-lg-3">
+
+<div class="card shadow border-0 rounded-4">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-pills
+
+text-primary fa-3x mb-3">
+
+</i>
+
+<h6>
+
+Medicines
+
+</h6>
+
+<h2>
+
+{{ medicine_count }}
+
+</h2>
+
+<small>
+
+Total Medicines
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Water -->
+
+<div class="col-lg-3">
+
+<div class="card shadow border-0 rounded-4">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-glass-water
+
+text-info fa-3x mb-3">
+
+</i>
+
+<h6>
+
+Water Intake
+
+</h6>
+
+<h2>
+
+{{ water.glasses if water else 0 }}/8
+
+</h2>
+
+<small>
+
+Today's Goal
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Sleep -->
+
+<div class="col-lg-3">
+
+<div class="card shadow border-0 rounded-4">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-bed
+
+text-warning fa-3x mb-3">
+
+</i>
+
+<h6>
+
+Sleep
+
+</h6>
+
+<h2>
+
+{{ sleep.total_hours if sleep else 0 }}
+
+</h2>
+
+<small>
+
+Hours
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================================================= -->
+<!-- Today's Reminders & BMI -->
+<!-- ================================================= -->
+
+<div class="row mt-4">
+
+    <!-- Today's Reminders -->
+
+    <div class="col-lg-8 mb-4">
+
+        <div class="card shadow border-0 rounded-4 h-100">
+
+            <div class="card-header bg-primary text-white">
+
+                <h5 class="mb-0">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    Today's Reminders
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                {% if today_reminders %}
+
+                    {% for reminder in today_reminders %}
+
+                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+
+                        <div>
+
+                            <h6 class="mb-1">
+
+                                {{ reminder.medicine.medicine_name }}
+
+                            </h6>
+
+                            <small class="text-muted">
+
+                                {{ reminder.reminder_time.strftime("%I:%M %p") }}
+
+                            </small>
+
+                        </div>
+
+                        <span class="badge bg-warning">
+
+                            Pending
+
+                        </span>
+
+                    </div>
+
+                    {% endfor %}
 
                 {% else %}
 
-                    <p>
+                    <div class="text-center py-5">
 
-                        Keep following your medication schedule.
+                        <i class="fa-solid fa-circle-check
 
-                    </p>
+                        text-success fa-4x mb-3">
+
+                        </i>
+
+                        <h5>
+
+                            No reminders today
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            You're all caught up!
+
+                        </p>
+
+                    </div>
 
                 {% endif %}
-
-                <hr>
-
-                <p>
-
-                    💧 Drink at least 8 glasses of water.
-
-                </p>
-
-                <p>
-
-                    😴 Sleep 7–8 hours daily.
-
-                </p>
 
             </div>
 
@@ -370,67 +317,407 @@
 
     </div>
 
-    <!-- Recent Activity -->
 
-    <div class="activity-card">
+    <!-- BMI -->
 
-        <h4>
+    <div class="col-lg-4 mb-4">
 
-            <i class="fa-solid fa-clock-rotate-left"></i>
+        <div class="card shadow border-0 rounded-4 h-100">
 
-            Recent Medicine Status
+            <div class="card-header bg-success text-white">
 
-        </h4>
+                <h5 class="mb-0">
 
-        <hr>
+                    ⚖ Body Mass Index
 
-        {% if medicines %}
-
-            {% for medicine in medicines[:5] %}
-
-            <div class="activity-item">
-
-                <div class="activity-icon">
-
-                    <i class="fa-solid fa-pills"></i>
-
-                </div>
-
-                <div>
-
-                    <strong>
-
-                        {{ medicine.medicine_name }}
-
-                    </strong>
-
-                    <br>
-
-                    <small>
-
-                        Status :
-
-                        {{ medicine.status }}
-
-                    </small>
-
-                </div>
+                </h5>
 
             </div>
 
-            {% endfor %}
+            <div class="card-body text-center">
+
+                {% if bmi %}
+
+                    <h1 class="display-3 fw-bold text-success">
+
+                        {{ bmi.bmi }}
+
+                    </h1>
+
+                    <h4>
+
+                        {{ bmi.category }}
+
+                    </h4>
+
+                    <hr>
+
+                    {% if bmi.category=="Normal" %}
+
+                        <div class="alert alert-success">
+
+                            Healthy BMI
+
+                        </div>
+
+                    {% elif bmi.category=="Underweight" %}
+
+                        <div class="alert alert-info">
+
+                            Underweight
+
+                        </div>
+
+                    {% elif bmi.category=="Overweight" %}
+
+                        <div class="alert alert-warning">
+
+                            Overweight
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="alert alert-danger">
+
+                            Please calculate BMI
+
+                        </div>
+
+                    {% endif %}
+
+                {% else %}
+
+                    <div class="py-5">
+
+                        <i class="fa-solid fa-weight-scale
+
+                        fa-4x text-secondary mb-3">
+
+                        </i>
+
+                        <h5>
+
+                            BMI Not Available
+
+                        </h5>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- AI Health Tips -->
+<!-- ================================================= -->
+
+<div class="card shadow border-0 rounded-4 mb-4">
+
+    <div class="card-header bg-info text-white">
+
+        <h5 class="mb-0">
+
+            🤖 AI Health Tips
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        {% if tips %}
+
+            <div class="row">
+
+                {% for tip in tips %}
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="alert alert-light border">
+
+                        {{ tip }}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
 
         {% else %}
 
-            <p>
+            <div class="alert alert-success">
 
-                No activity available.
+                Everything looks good today.
 
-            </p>
+                Keep maintaining your healthy lifestyle!
+
+            </div>
 
         {% endif %}
 
     </div>
+
+</div>
+<!-- ================================================= -->
+<!-- Recent Medicines + Quick Actions -->
+<!-- ================================================= -->
+
+<div class="row">
+
+    <!-- Recent Medicines -->
+
+    <div class="col-lg-8 mb-4">
+
+        <div class="card shadow border-0 rounded-4">
+
+            <div class="card-header bg-dark text-white">
+
+                <h5 class="mb-0">
+
+                    <i class="fa-solid fa-pills"></i>
+
+                    Recent Medicines
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                {% if medicines %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Medicine</th>
+
+                                <th>Dosage</th>
+
+                                <th>Frequency</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for medicine in medicines[:5] %}
+
+                            <tr>
+
+                                <td>
+
+                                    <strong>
+
+                                        {{ medicine.medicine_name }}
+
+                                    </strong>
+
+                                </td>
+
+                                <td>
+
+                                    {{ medicine.dosage }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ medicine.frequency }}
+
+                                </td>
+
+                                <td>
+
+                                    {% if medicine.status=="Taken" %}
+
+                                        <span class="badge bg-success">
+
+                                            Taken
+
+                                        </span>
+
+                                    {% elif medicine.status=="Pending" %}
+
+                                        <span class="badge bg-warning text-dark">
+
+                                            Pending
+
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="badge bg-danger">
+
+                                            Missed
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                    <div class="text-center py-5">
+
+                        <i class="fa-solid fa-capsules
+
+                        fa-4x text-secondary mb-3">
+
+                        </i>
+
+                        <h5>
+
+                            No Medicines Found
+
+                        </h5>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Quick Actions -->
+
+    <div class="col-lg-4 mb-4">
+
+        <div class="card shadow border-0 rounded-4">
+
+            <div class="card-header bg-secondary text-white">
+
+                <h5 class="mb-0">
+
+                    ⚡ Quick Actions
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-grid gap-3">
+
+                    <a href="/medicines"
+
+                       class="btn btn-primary">
+
+                        💊 Manage Medicines
+
+                    </a>
+
+                    <a href="/scanner"
+
+                       class="btn btn-success">
+
+                        📷 Scan Prescription
+
+                    </a>
+
+                    <a href="/water"
+
+                       class="btn btn-info text-white">
+
+                        💧 Water Tracker
+
+                    </a>
+
+                    <a href="/sleep"
+
+                       class="btn btn-warning">
+
+                        😴 Sleep Tracker
+
+                    </a>
+
+                    <a href="/bmi"
+
+                       class="btn btn-dark">
+
+                        ⚖ BMI Calculator
+
+                    </a>
+
+                    <a href="/analytics"
+
+                       class="btn btn-secondary">
+
+                        📊 Analytics
+
+                    </a>
+
+                    <a href="/chatbot"
+
+                       class="btn btn-outline-primary">
+
+                        🤖 AI Assistant
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- Footer -->
+<!-- ================================================= -->
+
+<div class="text-center mt-4 mb-2">
+
+    <hr>
+
+    <p class="text-muted">
+
+        MediMind AI
+
+        <br>
+
+        AI-Powered Medicine Reminder & Health Monitoring System
+
+    </p>
+
+</div>
 
 </div>
 

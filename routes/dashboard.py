@@ -3,6 +3,10 @@ from flask_login import login_required, current_user
 from models.reminder import Reminder
 from datetime import date
 from models.medicine import Medicine
+from models.water import WaterLog
+from models.sleep import SleepLog
+from models.bmi import BMI
+from routes.medicine import medicines
 
 dashboard_bp = Blueprint("dashboard", __name__)
 
@@ -49,6 +53,44 @@ def dashboard():
         Reminder.reminder_time
     ).all()
     
+    water = WaterLog.query.filter_by(
+        user_id=current_user.id
+    ).order_by(
+        WaterLog.id.desc()
+    ).first()
+
+    sleep = SleepLog.query.filter_by(
+        user_id=current_user.id
+    ).order_by(
+        SleepLog.id.desc()
+    ).first()
+
+    bmi = BMI.query.filter_by(
+        user_id=current_user.id
+    ).order_by(
+        BMI.id.desc()
+    ).first()
+
+    tips = []
+
+    if water:
+        if water.glasses < 8:
+            tips.append("💧 Drink more water today.")
+        else:
+            tips.append("✅ Great job meeting your water goal!")
+
+    if sleep:
+        if sleep.total_hours < 7:
+            tips.append("😴 Try to sleep at least 7–8 hours.")
+        else:
+            tips.append("✅ Your sleep duration looks good.")
+
+    if bmi:
+        if bmi.category != "Normal":
+            tips.append(f"⚖️ Your BMI is {bmi.category}. Maintain a healthy lifestyle.")
+        else:
+            tips.append("❤️ Your BMI is in the normal range.")
+
     return render_template(
         "dashboard.html",
         user=current_user,
@@ -58,5 +100,9 @@ def dashboard():
         pending_count=pending_count,
         missed_count=missed_count,
         health_score=health_score,
-        today_reminders=today_reminders
+        today_reminders=today_reminders,
+        water=water,
+        sleep=sleep,
+        bmi=bmi,
+        tips=tips
     )

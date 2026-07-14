@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-dark text-white">
+
+            <h3>
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- ================= CHANGE PASSWORD ================= -->
+
+            <h5 class="mb-3">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Change Password
+
+            </h5>
+
+            <form
+                method="POST"
+                action="{{ url_for('settings.change_password') }}">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Current Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        name="current_password"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        New Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        name="new_password"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Confirm Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        name="confirm_password"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <button
+                    class="btn btn-primary">
+
+                    <i class="fa-solid fa-key"></i>
+
+                    Change Password
+
+                </button>
+
+            </form>
+
+            <hr class="my-5">
+
+            <!-- ================= NOTIFICATIONS ================= -->
+
+            <h5 class="mb-3">
+
+                <i class="fa-solid fa-bell"></i>
+
+                Notification Preferences
+
+            </h5>
+
+            <form
+                method="POST"
+                action="{{ url_for('settings.update_notifications') }}">
+
+                <div class="form-check form-switch mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="medicineReminder"
+                        checked>
+
+                    <label
+                        class="form-check-label"
+                        for="medicineReminder">
+
+                        Medicine Reminders
+
+                    </label>
+
+                </div>
+
+                <div class="form-check form-switch mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="waterReminder"
+                        checked>
+
+                    <label
+                        class="form-check-label"
+                        for="waterReminder">
+
+                        Water Intake Reminder
+
+                    </label>
+
+                </div>
+
+                <div class="form-check form-switch mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="sleepReminder">
+
+                    <label
+                        class="form-check-label"
+                        for="sleepReminder">
+
+                        Sleep Reminder
+
+                    </label>
+
+                </div>
+
+                <button
+                    class="btn btn-success">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Preferences
+
+                </button>
+
+            </form>
+
+            <hr class="my-5">
+
+            <!-- ================= ACCOUNT ================= -->
+
+            <h5 class="text-danger mb-3">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                Danger Zone
+
+            </h5>
+
+            <div class="alert alert-warning">
+
+                Deleting your account will permanently remove:
+
+                <ul class="mt-2">
+
+                    <li>Medicines</li>
+
+                    <li>Reminders</li>
+
+                    <li>Water Logs</li>
+
+                    <li>Sleep Records</li>
+
+                    <li>BMI History</li>
+
+                    <li>AI Chat History</li>
+
+                </ul>
+
+            </div>
+
+            <form
+                method="POST"
+                action="{{ url_for('settings.delete_account') }}"
+
+                onsubmit="return confirm('Are you sure you want to permanently delete your account?');">
+
+                <button
+                    class="btn btn-danger">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Delete My Account
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

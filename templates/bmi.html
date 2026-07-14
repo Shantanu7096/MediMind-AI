@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}BMI Calculator{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<div class="card shadow">
+
+<div class="card-header bg-success text-white">
+
+<h3>
+
+BMI Calculator
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<form action="/save_bmi" method="POST">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label>
+
+Height (cm)
+
+</label>
+
+<input
+type="number"
+step="0.1"
+name="height"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-6">
+
+<label>
+
+Weight (kg)
+
+</label>
+
+<input
+type="number"
+step="0.1"
+name="weight"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<button
+class="btn btn-success mt-4">
+
+Calculate BMI
+
+</button>
+
+</form>
+
+{% if bmi %}
+
+<hr>
+
+<h4>
+
+Your Latest BMI
+
+</h4>
+
+<h2>
+
+{{ bmi.bmi }}
+
+</h2>
+
+<h4>
+
+{{ bmi.category }}
+
+</h4>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

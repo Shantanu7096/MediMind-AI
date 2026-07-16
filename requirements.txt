@@ -16,7 +16,7 @@ requests==2.34.2
 google-genai
 google-generativeai==0.8.6
 easyocr==1.7.2
-opencv-python==4.12.0.88
+opencv-python-headless
 numpy==2.2.6
 Pillow==12.3.0
 reportlab==5.0.0
